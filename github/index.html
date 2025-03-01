@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repo Preview</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #preview-card {
+            width: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .repo-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .repo-desc {
+            color: #555;
+            margin: 10px 0;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Repo Preview Generator</h1>
+    <input type="text" id="repoUrl" placeholder="Enter GitHub Repo URL">
+    <button onclick="fetchRepoDetails()">Generate Preview</button>
+    <div id="preview-card" style="display: none;">
+        <div class="profile">
+            <img id="owner-avatar" src="" alt="Owner Avatar">
+            <div>
+                <span id="owner-name"></span>
+            </div>
+        </div>
+        <div class="repo-title" id="repo-name"></div>
+        <div class="repo-desc" id="repo-desc"></div>
+        <div class="stats">
+            <span>⭐ Stars: <span id="stars"></span></span>
+            <span>🍴 Forks: <span id="forks"></span></span>
+        </div>
+        <button onclick="downloadPreview()">Download Preview</button>
+    </div>
+    <script>
+        async function fetchRepoDetails() {
+            const repoUrl = document.getElementById("repoUrl").value;
+            const repoPath = new URL(repoUrl).pathname.substring(1);
+            const response = await fetch(`https://api.github.com/repos/${repoPath}`);
+            const repoData = await response.json();
+            
+            document.getElementById("preview-card").style.display = "block";
+            document.getElementById("owner-avatar").src = repoData.owner.avatar_url;
+            document.getElementById("owner-name").innerText = repoData.owner.login;
+            document.getElementById("repo-name").innerText = repoData.full_name;
+            document.getElementById("repo-desc").innerText = repoData.description;
+            document.getElementById("stars").innerText = repoData.stargazers_count;
+            document.getElementById("forks").innerText = repoData.forks_count;
+        }
+        function downloadPreview() {
+            html2canvas(document.getElementById("preview-card")).then(canvas => {
+                let link = document.createElement("a");
+                link.download = "github_repo_preview.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
