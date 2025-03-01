@@ -3,7 +3,7 @@ from PyCSV import main
 fileName = input("Enter excel file (without .csv) : ")
 # import file.eDATAcel and convert it to file.csv
 try :
-    data = main.dataArrRows(f"{fileName}.csv")
+    data = main.dataMatrix(f"{fileName}.csv")
     htmlTable = '<table>\n'
     for i in data :
         row = '<tr>'
