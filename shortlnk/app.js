@@ -31,9 +31,32 @@ function getLinks(){
   })
 }
 getLinks()
+// function to generate random word 
+function generateRandomWord() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let word = '';
+  for (let i = 0; i < 5; i++) {
+      word += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return word;
+}
 // forms
 app.post('/',(req,res)=>{
-  
+  let body = req.body
+  if(!(Object.keys(links).includes(body.Llink))){
+    try {
+      short = generateRandomWord()
+      links[body.Llink] = short
+      connection.query(`insert into links() value('${body.Llink}',${short})`)
+    } catch (err) {
+      short = generateRandomWord()
+      links[body.Llink] = short
+      connection.query(`insert into links() value('${body.Llink}',${short})`)
+    }
+  }
+  res.session.slink = links[body.Llink]
+  res.session.getSlink = true
+  res.redirect('/')
 })
 
 
