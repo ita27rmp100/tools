@@ -4,15 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 let mysql = require("mysql");
-let session = require("express-session")
+const qs = require("querystring")
+const session = require('express-session');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 // set milldwares
 app.use(session({
-  secret:'c2hvcnRsbms' // shortlnk
-}))
+  secret: "it's secret"
+}));
 // DB connection
 let connection = mysql.createConnection({
   host:"127.0.0.1",
@@ -20,9 +19,9 @@ let connection = mysql.createConnection({
   database:"shortlnk",
   password:'',
 })
-var links = {}, Llink , Slink 
+var links={},Llink=[],Slink=[]
 function getLinks(){
-  connection.query('select * from users',function(error,results,fields) {
+  connection.query('select * from links',function(error,results,fields) {
     Llink = results.map(row => row.Llink)
     Slink = results.map(row => row.Slink)
     for(i=0;i<(Object.keys(Slink).length);i++){
@@ -42,24 +41,28 @@ function generateRandomWord() {
 }
 // forms
 app.post('/',(req,res)=>{
-  let body = req.body
-  if(!(Object.keys(links).includes(body.Llink))){
-    try {
-      short = generateRandomWord()
-      links[body.Llink] = short
-      connection.query(`insert into links() value('${body.Llink}',${short})`)
-    } catch (err) {
-      short = generateRandomWord()
-      links[body.Llink] = short
-      connection.query(`insert into links() value('${body.Llink}',${short})`)
-    }
-  }
-  res.session.slink = links[body.Llink]
-  res.session.getSlink = true
-  res.redirect('/')
+  let body = ''
+  req.on('data',(data)=>{
+      body = body + data
+  })
+  req.on('end',()=>{
+      let result = qs.parse(body)
+      if(!(Object.keys(links).includes(body.Llink))){
+        try {
+          short = generateRandomWord()
+          links[body.Llink] = short
+          connection.query(`insert into links() value('${body.Llink}',${short})`)
+        } catch (err) {
+          short = generateRandomWord()
+          links[body.Llink] = short
+          connection.query(`insert into links() value('${body.Llink}',${short})`)
+        }
+      }
+      req.session.slink = links[body.Llink]
+      req.session.getSlink = true
+      res.redirect('/')
+  })
 })
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -72,7 +75,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
