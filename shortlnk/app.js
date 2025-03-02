@@ -3,11 +3,40 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+let mysql = require("mysql");
+let session = require("express-session")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// set milldwares
+app.use(session({
+  secret:'c2hvcnRsbms' // shortlnk
+}))
+// DB connection
+let connection = mysql.createConnection({
+  host:"127.0.0.1",
+  user:'root',
+  database:"shortlnk",
+  password:'',
+})
+var links = {}, Llink , Slink 
+function getLinks(){
+  connection.query('select * from users',function(error,results,fields) {
+    Llink = results.map(row => row.Llink)
+    Slink = results.map(row => row.Slink)
+    for(i=0;i<(Object.keys(Slink).length);i++){
+      links[Llink[i]]=Slink[i]
+    }
+  })
+}
+getLinks()
+// forms
+app.post('/',(req,res)=>{
+  
+})
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
