@@ -5,41 +5,52 @@ const session = require('express-session');
 
 // DB connection
 let connection = mysql.createConnection({
-  host:"127.0.0.1",
-  user:'root',
-  database:"shortlnk",
-  password:'',
-})
-var links={},Llink=[],Slink=[]
-function getLinks(){
-  connection.query('select * from links',function(error,results,fields) {
-    Llink = results.map(row => row.Llink)
-    Slink = results.map(row => row.Slink)
-    for(i=0;i<(Object.keys(Slink).length);i++){
-      links[Llink[i]]=Slink[i]
-    }
-  })
+  host: "127.0.0.1",
+  user: "root",
+  database: "shortlnk",
+  password: ""
+});
+
+var links = {}; // mapping: short link -> long link
+
+// Load links from DB and map Slink to Llink
+function getLinks(callback) {
+  connection.query('SELECT * FROM links', function (error, results) {
+    if (error) return callback(error);
+    results.forEach(row => {
+      links[row.Slink] = row.Llink;
+    });
+    callback(null);
+  });
 }
+
+// Preload links (ensure error handling as needed)
+getLinks(function(err) {
+  if (err) console.error("Error loading links:", err);
+});
 
 /* GET home page. */
 router.get('/:lnk?', function(req, res, next) {
-  let slink = ''
-  if(req.session.getSlink){
-    slink = req.session.slink
-  }
-  req.session.goLink = true
-  if(req.session.goLink){
-    slink = req.params.lnk
-    for (let i = 0; i < Slink.length; i++) {
-      if(links[Llink[i]]==slink){
-        res.redirect(links[Llink[i]])
-      }
+  // Use the provided parameter as the short link
+  let slink = req.params.lnk;
+  req.session.goLink = true;
+
+  if (slink !== undefined) {
+    // If the mapping exists, redirect; otherwise show an error message.
+    if (links[slink]) {
+      return res.redirect(links[slink]);
+    } else {
+      return res.send("This short link doesn't exist");
     }
-    if (i==Slink.length) {
-      res.send("This short link doesn't exist")
+  } else {
+    let slink = ''
+    try {
+      slink = req.session.slink
+    } catch (error) {
+      slink = ''
     }
+    res.render('index', { slink: slink });
   }
-  res.render('index');
 });
 
 module.exports = router;
