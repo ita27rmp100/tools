@@ -40,7 +40,7 @@ function generateRandomWord() {
   return word;
 }
 // forms
-app.post('/',(req,res)=>{
+app.post('/',(req,res,fields)=>{
   let body = ''
   req.on('data',(data)=>{
       body = body + data
@@ -51,11 +51,11 @@ app.post('/',(req,res)=>{
         try {
           short = generateRandomWord()
           links[body.Llink] = short
-          connection.query(`insert into links() value('${body.Llink}',${short})`)
+          connection.query(`insert into links() value('${result.Llink}','${short}')`)
         } catch (err) {
           short = generateRandomWord()
           links[body.Llink] = short
-          connection.query(`insert into links() value('${body.Llink}',${short})`)
+          connection.query(`insert into links() value('${body.Llink}','${short}')`)
         }
       }
       req.session.slink = links[body.Llink]
