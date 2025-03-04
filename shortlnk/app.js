@@ -63,7 +63,6 @@ app.post('/',(req,res,fields)=>{
       req.session.slink = links[result.Llink]
       req.session.Llink = result.Llink
       res.redirect('/')
-      // res.json('')
   })
 })
 
