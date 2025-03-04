@@ -35,21 +35,23 @@ router.get('/:lnk?', function(req, res, next) {
   let slink = req.params.lnk;
   req.session.goLink = true;
 
-  if (slink !== undefined) {
+  if (slink != undefined) {
     // If the mapping exists, redirect; otherwise show an error message.
     if (links[slink]) {
+      console.log(links,slink,links[slink])
       return res.redirect(links[slink]);
     } else {
       return res.send("This short link doesn't exist");
     }
   } else {
-    let slink = ''
+    let slink = '' , Llink = ''
     try {
       slink = req.session.slink
+      Llink = req.session.Llink
     } catch (error) {
       slink = ''
     }
-    res.render('index', { slink: slink });
+    res.render('index', { slink: slink,llink : Llink });
   }
 });
 
