@@ -12,6 +12,7 @@ var app = express();
 app.use(session({
   secret: "it's secret"
 }));
+// app.use(express.json())
 // DB connection
 let connection = mysql.createConnection({
   host:"127.0.0.1",
@@ -20,25 +21,30 @@ let connection = mysql.createConnection({
   password:'',
 })
 var links={},Llink=[],Slink=[]
-function getLinks(){
-  connection.query('select * from links',function(error,results,fields) {
-    Llink = results.map(row => row.Llink)
-    Slink = results.map(row => row.Slink)
-    for(i=0;i<(Object.keys(Slink).length);i++){
-      links[Llink[i]]=Slink[i]
-    }
-  })
-}
-getLinks()
-// function to generate random word 
-function generateRandomWord() {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let word = '';
-  for (let i = 0; i < 5; i++) {
-      word += chars.charAt(Math.floor(Math.random() * chars.length));
+// functions
+  function getLinks(){
+    connection.query('select * from links',function(error,results,fields) {
+      Llink = results.map(row => row.Llink)
+      Slink = results.map(row => row.Slink)
+      for(i=0;i<(Object.keys(Slink).length);i++){
+        links[Llink[i]]=Slink[i]
+      }
+    })
   }
-  return word;
-}
+  getLinks()
+  function generateRandomWord() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let word = '';
+    for (let i = 0; i < 5; i++) {
+        word += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return word;
+  }
+  function queryInsert(key){
+    short = generateRandomWord()
+    links[key] = short
+    connection.query(`insert into links() value('${key}','${short}')`)
+  }
 // forms
 app.post('/',(req,res,fields)=>{
   let body = ''
@@ -49,18 +55,15 @@ app.post('/',(req,res,fields)=>{
       let result = qs.parse(body)
       if(!(Object.keys(links).includes(body.Llink))){
         try {
-          short = generateRandomWord()
-          links[body.Llink] = short
-          connection.query(`insert into links() value('${result.Llink}','${short}')`)
+          queryInsert(result.Llink)
         } catch (err) {
-          short = generateRandomWord()
-          links[body.Llink] = short
-          connection.query(`insert into links() value('${body.Llink}','${short}')`)
+          queryInsert(result.Llink)
         }
       }
-      req.session.slink = links[body.Llink]
-      req.session.getSlink = true
+      req.session.slink = links[result.Llink]
+      req.session.Llink = result.Llink
       res.redirect('/')
+      // res.json('')
   })
 })
 

@@ -24,15 +24,15 @@
                         <div class="input-group-append InputTitle">
                             <span class="input-group-text" id="name">URL</span>
                         </div>
-                        <input type="url" maxlength="30" placeholder="Enter the long link here" name="Llink" class="form-control">
+                        <input type="url" value="<%=llink %>" maxlength="255" placeholder="Enter the long link here" name="Llink" class="form-control">
                     </div>
-                    <small>
+                    <small class="float-left">
                         <strong>The Shorten link :</strong>
-                        <a href="<%=slink %>"><%=slink %></a>
+                        <a href="/<%=slink %>">shortlnk.com/<%=slink %></a>
                     </small>
                 </div>
                 <div class="card-footer justify-content-center log">
-                    <input type="submit" value="Shorten url" class="btn btn-success text-light">
+                    <input type="submit" value="SHORTEN" class="btn btn-success text-light">
                 </div>
             </form>
         </div>
