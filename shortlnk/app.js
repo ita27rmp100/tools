@@ -8,6 +8,8 @@ const qs = require("querystring")
 const session = require('express-session');
 var indexRouter = require('./routes/index');
 var app = express();
+// ignore static files 
+app.use(express.static(path.join(__dirname, 'public')));
 // set milldwares
 app.use(session({
   secret: "it's secret"
@@ -31,7 +33,9 @@ var links={},Llink=[],Slink=[]
       }
     })
   }
-  getLinks()
+  setInterval(()=>{
+    getLinks()
+  },1000)
   function generateRandomWord() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let word = '';
