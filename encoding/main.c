@@ -4,7 +4,7 @@
 
 // A function To convert dec to bin (declaration)
 int decTo_bin_or_oct(int dec);
-void fileToBin();
+__declspec() void fileToBin();
 // main program
 int main(){
     
