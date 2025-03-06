@@ -1,13 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <math.h>
 // A function To convert dec to bin (declaration)
 int decTo_bin_or_oct(int dec);
-__declspec() void fileToBin();
+void fileToBin();
 // main program
 int main(){
-    
     fileToBin();
     return 0;
 }
@@ -27,37 +26,55 @@ int decTo_bin_or_oct(int dec){
 }
 // represent files in binary langauge
 void fileToBin(){
-    // opening a file
-    FILE *text_file ;
-    FILE *new_file ;
-    // set reading mode 
-    // Asking about the name of file :
+    FILE *text_file;
+    FILE *new_file;
+    // Ask for the file name.
     char file_name[30];
-    printf("Enter the file's name : ") ;scanf("%s",&file_name);
+    printf("Enter the file's name: ");
+    scanf("%s", file_name);  // Correct usage without & for string arrays.
     char BinFile[45];
-    sprintf(BinFile,"bin_%s",file_name);
-    // start reading and writing
-    text_file = fopen(file_name,"r");
-    if (!(text_file)){printf("FILE DOESN'T EXIST ... END PROCCESSING");}
-    else{
-        // start written
-        new_file = fopen(BinFile,"w");
-        // reading the content of the file
-        char ch;
-        while ((ch = fgetc(text_file)) != EOF) {
-            // EOF = the char isn't an ASCII value
-            int CharBin = decTo_bin_or_oct(ch+0);
-            char BinStr[7];
-            char space = ' ';
-            itoa(CharBin,BinStr,10);
-            if (ch+0 !=27){
-                strncat(BinStr," ",1);
-            }
-            CharBin==1010 ? fprintf(new_file,"\n") : fprintf(new_file,BinStr);
-        }
-        // closing the file
-        fclose(text_file);
-        fclose(new_file);
-        printf("Conversion Completed ... (Resualt stored in : %s _bin.txt)",BinFile);
+    sprintf(BinFile, "bin_%s", file_name);
+    // Open the source file for reading.
+    text_file = fopen(file_name, "r");
+    if (text_file == NULL) {
+        printf("FILE DOESN'T EXIST ... END PROCESSING\n");
+        return;
     }
+    // Open the output file for writing.
+    new_file = fopen(BinFile, "w");
+    if (new_file == NULL) {
+        printf("Error creating output file.\n");
+        fclose(text_file);
+        return;
+    }
+    // The letters string used for converting the sum into a letter.
+    char letters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    int letters_len = (int)strlen(letters);  // Should be 62.
+    int ch;  // fgetc returns an int to properly check for EOF.
+    while ((ch = fgetc(text_file)) != EOF) {
+        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+            // Perform your conversion function.
+            int convResult = decTo_bin_or_oct(ch);
+            // Calculate the sum as described.
+            int sum = (convResult / 10000) + (convResult % 10000);
+            // Ensure the index is within bounds of the letters string.
+            int index = sum % letters_len;
+            char letter = letters[index];
+            // If the character is not the escape character (ASCII 27), add a space after.
+            if(ch != 27)
+                fprintf(new_file, "%c", letter);
+            else
+                fprintf(new_file, "%c", letter);
+        } else {
+            // For non-letter characters, just write them as is.
+            if(ch == '\n')
+                fprintf(new_file, "\n");
+            else
+                fprintf(new_file, "%c", ch);
+        }
+    }
+    // Close both files.
+    fclose(text_file);
+    fclose(new_file);
+    printf("Conversion Completed ... (Result stored in: %s)\n", BinFile);
 }
