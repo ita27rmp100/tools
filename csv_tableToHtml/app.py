@@ -6,10 +6,10 @@ try :
     data = main.dataMatrix(f"{fileName}.csv")
     htmlTable = '<table>\n'
     for i in data :
-        row = '<tr>'
+        row = " "*4 + '<tr>\n'
         for j in i :
-            row += f"<td>{j}</td>\n"
-        row += "</tr>\n"  
+            row += " "*8 + f"<td>{j}</td>\n"
+        row += "    </tr>\n"  
         htmlTable += row
     htmlTable += "</table>"
     with open(f"{fileName}_TABLE.html",mode="w") as html :
