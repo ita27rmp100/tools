@@ -1,2 +1,2 @@
-(hello mates)
+(hello, mates)
 good
