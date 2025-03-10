@@ -14,5 +14,5 @@ while repeat != 0 :
     repeat -=1
 
 os.remove("app.py")
-os.system('git commit -a -m "Ending inflating hhhh"')
+os.system('git commit -a -m "Ending inflating :)"')
 os.system("git push")
