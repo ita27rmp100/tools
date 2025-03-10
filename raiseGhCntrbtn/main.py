@@ -6,7 +6,7 @@ path = input('Enter the path that you wanna push from it : ')
 os.chdir(path)
 with open('app.py','w') as file :
     while repeat != 0 :
-        file.write('print("hello world")"\n'*(repeat+1))
+        file.write('print("hello world")\n'*(repeat+1))
         repeat -=1
         os.system('git add .')
         commit = f'commit : {repeat}'
@@ -14,3 +14,4 @@ with open('app.py','w') as file :
         os.system(f'git commit -m "commit : {commit}"')
         os.system("git push")
         print("done : ",repeat)
+os.system("git push")
