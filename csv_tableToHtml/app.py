@@ -1,9 +1,9 @@
-from PyCSV import main
+import PyCSV
 # WELCOME TO SCRIPT & INPUT FILE NAME
 fileName = input("Enter excel file (without .csv) : ")
 # import file.eDATAcel and convert it to file.csv
 try :
-    data = main.dataMatrix(f"{fileName}.csv")
+    data = PyCSV.dataMatrix(f"{fileName}.csv")
     htmlTable = '<table>\n'
     for i in data :
         row = " "*4 + '<tr>\n'
