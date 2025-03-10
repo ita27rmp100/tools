@@ -13,5 +13,6 @@ while repeat != 0 :
     print("done : ",repeat)
     repeat -=1
 
+os.remove("app.py")
 os.system('git commit -a -m "Ending inflating hhhh"')
 os.system("git push")
