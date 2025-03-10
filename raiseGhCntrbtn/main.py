@@ -1,7 +1,7 @@
 # Illegal tool to raise your contributions in GitHub
-import os , time
+import os
 
-repeat = int(input("How many contributions you want to add to ur account ? "))
+repeat = int(input("How many contributions you want to add to ur account ? "))-1
 path = input('Enter the path that you wanna push from it : ')
 os.chdir(path)
 
