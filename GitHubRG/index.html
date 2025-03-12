@@ -10,33 +10,37 @@
     <nav class="navbar navbar-light bg-light d-flex row justify-content-around">
         <section class="navbar-brand mb-0 h1" id="title"></section>
     </nav>
-    <nav class="form-inline center p-4 d-flex row justify-content-center w-100">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control text-center" placeholder="username/repo-name" id="repo-name">
-            <div class="input-group-append">
-              <button class="btn btn-success" type="button" onclick="fetchRepoDetails()">Generate</button>
-            </div>
-          </div>
-    </nav>
-    <div class="card card-profile shadow-sm">
-        <div class="card-body">
-            <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right">
-            <div class="d-flex align-items-center mb-3 right">
-                <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right">
-                <div class="ml-3">
-                    <h4 class="font-weight-bold mb-0 text-muted">ita27rmp100/ <br> <span class="text-dark">PyCSV</span></h4>
+    <nav class="form-inline center p-4 d-flex justify-content-center align-items-center w-100" style="flex-direction:column;">
+        <div class="w-100 d-flex justify-content-center align-items-center row center" style="flex-direction: column;">
+            <div class="input-group mb-3 w-100">
+                <input type="text" class="form-control text-center" placeholder="username/repo-name" id="repo-name">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="fetchRepoDetails()">Generate</button>
                 </div>
             </div>
-            <p class="text-muted">This library has nine functions to import the data from CSV files, organize the data that you import...</p>
-            <div class="d-flex justify-content-between text-muted">
-                <small><i class="fas fa-user"></i> 1 Contributor</small>
-                <small><i class="fas fa-exclamation-circle"></i> 0 Issues</small>
-                <small><i class="fas fa-star"></i> 0 Stars</small>
-                <small><i class="fas fa-code-branch"></i> 0 Forks</small>
-            </div>
+            <input type="range" name="" value="450" maxlength="600" minlength="300" id="widthController" class="w-100">
         </div>
-        <div class="card-footer bg-primary p-1"></div>
-    </div>
+            <br>
+        <div class="card card-profile shadow-sm mt-3" style="width:400px;">
+            <div class="card-body">
+                <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right">
+                <div class="d-flex align-items-center mb-3 right">
+                    <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right">
+                    <div class="ml-3">
+                        <h4 class="font-weight-bold mb-0 text-muted">ita27rmp100/ <br> <span class="text-dark">PyCSV</span></h4>
+                    </div>
+                </div>
+                <p class="text-muted">This library has nine functions to import the data from CSV files, organize the data that you import...</p>
+                <div class="d-flex justify-content-between text-muted">
+                    <small><i class="fas fa-user"></i> 1 Contributor</small>
+                    <small><i class="fas fa-exclamation-circle"></i> 0 Issues</small>
+                    <small><i class="fas fa-star"></i> 0 Stars</small>
+                    <small><i class="fas fa-code-branch"></i> 0 Forks</small>
+                </div>
+            </div>
+            <div class="card-footer bg-primary p-1"></div>
+        </div>
+    </nav>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script>
