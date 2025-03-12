@@ -18,10 +18,10 @@
                     <button class="btn btn-success" type="button" onclick="fetchRepoDetails()">Generate</button>
                 </div>
             </div>
-            <input type="range" name="" value="450" maxlength="600" minlength="300" id="widthController" class="w-100">
+            <input type="range" name="" value="450" max="600" min="300" id="widthController" class="w-100">
         </div>
             <br>
-        <div class="card card-profile shadow-sm mt-3" style="width:400px;">
+        <div class="card card-profile shadow-sm mt-3" id="card" style="width:400px;">
             <div class="card-body">
                 <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right">
                 <div class="d-flex align-items-center mb-3 right">
@@ -45,6 +45,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script>
         $("#title").text(document.title)
+        let widthRange= document.getElementById("widthController")
+        widthRange.addEventListener('input',()=>{
+            $("#card").css('width',`${$("#widthController").val()}px`)
+        })
+        $(window).resize(function(){
+            $("#widthController").attr('max',$('nav').width()-50)
+            console.log($('nav').width())
+        })
         function fetchRepoDetails(){
             let repo = $("#repo-name").val()
             $.get(`https://api.github.com/repos/${repo}`,function(data){
