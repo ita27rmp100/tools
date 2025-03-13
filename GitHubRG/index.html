@@ -25,21 +25,26 @@
             <div class="card-body">
                 <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right">
                 <div class="d-flex align-items-center mb-3 right">
-                    <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right">
-                    <div class="ml-3">
-                        <h4 class="font-weight-bold mb-0 text-muted">ita27rmp100/ <br> <span class="text-dark">PyCSV</span></h4>
+                    <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right" id="avatar">
+                    <div class="ml-3" id="userrepo">
+                        <h4 class="font-weight-bold mb-0 text-muted">
+                            ita27rmp100/
+                            <br> 
+                            <span class="text-dark" id="reponame">PyCSV</span>
+                        </h4>
                     </div>
                 </div>
-                <p class="text-muted">This library has nine functions to import the data from CSV files, organize the data that you import...</p>
+                <p class="text-muted" id="desc">This library has nine functions to import the data from CSV files, organize the data that you import...</p>
                 <div class="d-flex justify-content-between text-muted">
-                    <small><i class="fas fa-user"></i> 1 Contributor</small>
-                    <small><i class="fas fa-exclamation-circle"></i> 0 Issues</small>
-                    <small><i class="fas fa-star"></i> 0 Stars</small>
-                    <small><i class="fas fa-code-branch"></i> 0 Forks</small>
+                    <small><i class="fas fa-user"></i> <b id="cntrb">0</b> Contributor</small>
+                    <small><i class="fas fa-exclamation-circle"></i> <b id="issue">0</b> Issues</small>
+                    <small><i class="fas fa-star"></i> <b id="star">0</b> Stars</small>
+                    <small><i class="fas fa-code-branch"></i> <b id="fork">0</b> Forks</small>
                 </div>
             </div>
             <div class="card-footer bg-primary p-1"></div>
         </div>
+        <button onclick="">Download Preview</button>
     </nav>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -57,6 +62,19 @@
             let repo = $("#repo-name").val()
             $.get(`https://api.github.com/repos/${repo}`,function(data){
                 console.log(data)
+                $("#userrepo").html(
+                    `<h4 class="font-weight-bold mb-0 text-muted">
+                            ${data.owner.login}/
+                            <br> 
+                            <span class="text-dark">${data.name}</span>
+                    </h4>`
+                )
+                $("#avatar").attr('src',data.owner.avatar_url);
+                $("#fork").text(data.forks_count);
+                $("#star").text(data.stargazers_count);
+                $("#issue").text(data.open_issues_count);
+                $("#cntrb").text(data.network_count)
+                $("desc").text(data.description.slice(0,100)+"...")
             })
         }
     </script>
