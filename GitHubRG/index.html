@@ -18,7 +18,7 @@
                     <button class="btn btn-success" type="button" onclick="fetchRepoDetails()">Generate</button>
                 </div>
             </div>
-            <input type="range" name="" value="450" max="600" min="300" id="widthController" class="w-100">
+            <input type="range" value="450" max="600" min="300" id="widthController" class="w-100">
         </div>
             <br>
         <div class="card card-profile shadow-sm mt-3" id="preview" style="width:400px;">
@@ -44,13 +44,13 @@
             </div>
             <div class="card-footer bg-primary p-1"></div>
         </div>
-        <button onclick="downloadPreview()" class="btn btn-success mt-3">Download Preview</button>
+        <button onclick="downloadPreview()" class="btn btn-success mt-3" id="dp">Download Preview</button>
     </nav>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
-        $("#preview").hide()
+        $("#preview , #dp").hide()
         $("#title").text(document.title)
         let repoName = ''
         let widthRange= document.getElementById("widthController")
@@ -76,6 +76,7 @@
                 $("#cntrb").text(data.network_count)
                 $("#desc").text(data.description.slice(0,100)+"...")
                 $("#preview").fadeIn()
+            $("#dp").show()
             })
         }
         function downloadPreview() {
