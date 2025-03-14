@@ -8,6 +8,7 @@ os.chdir(path)
 while repeat != 0 :
     with open('app.py','a') as file :
         file.write('print("hello world")\n')
+    os.system
     os.system(f'git commit -a -m "commit : {repeat}"')
     os.system("git push")
     print("done : ",repeat)
