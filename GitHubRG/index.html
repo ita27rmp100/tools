@@ -21,11 +21,11 @@
             <input type="range" name="" value="450" max="600" min="300" id="widthController" class="w-100">
         </div>
             <br>
-        <div class="card card-profile shadow-sm mt-3" id="card" style="width:400px;">
+        <div class="card card-profile shadow-sm mt-3" id="preview" style="width:400px;">
             <div class="card-body">
-                <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right">
+                <!-- <img src="github.png" width="15px" height="15px" alt="githubIcon" class="right float-right"> -->
                 <div class="d-flex align-items-center mb-3 right">
-                    <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right" id="avatar">
+                    <!-- <img src="ita.jpg" width="60px" height="60px" alt="Profile Image" class="profile-image rounded right" id="avatar"> -->
                     <div class="ml-3" id="userrepo">
                         <h4 class="font-weight-bold mb-0 text-muted">
                             ita27rmp100/
@@ -44,24 +44,20 @@
             </div>
             <div class="card-footer bg-primary p-1"></div>
         </div>
-        <button onclick="">Download Preview</button>
+        <button onclick="downloadPreview()" class="btn btn-success mt-3">Download Preview</button>
     </nav>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         $("#title").text(document.title)
+        let repoName = ''
         let widthRange= document.getElementById("widthController")
-        widthRange.addEventListener('input',()=>{
-            $("#card").css('width',`${$("#widthController").val()}px`)
-        })
-        $(window).resize(function(){
-            $("#widthController").attr('max',$('nav').width()-50)
-            console.log($('nav').width())
-        })
+        widthRange.addEventListener('input',()=>{$("#preview").css('width',`${$("#widthController").val()}px`)})
         function fetchRepoDetails(){
             let repo = $("#repo-name").val()
             $.get(`https://api.github.com/repos/${repo}`,function(data){
-                console.log(data)
+                repoName = data.name
                 $("#userrepo").html(
                     `<h4 class="font-weight-bold mb-0 text-muted">
                             ${data.owner.login}/
@@ -74,9 +70,25 @@
                 $("#star").text(data.stargazers_count);
                 $("#issue").text(data.open_issues_count);
                 $("#cntrb").text(data.network_count)
-                $("desc").text(data.description.slice(0,100)+"...")
+                $("#desc").text(data.description.slice(0,100)+"...")
             })
         }
+        function downloadPreview() {
+        const preview = document.getElementById('preview');
+        
+        if (!preview) {
+            alert("Preview element not found!");
+            return;
+        }
+        
+        html2canvas(preview,{useCORS:true,logging:true}).then(canvas => {
+            let link = document.createElement("a")
+            link.download = `${repoName}_preview.png`
+            link.href = canvas.toDataURL("image/png")
+            console.log(link.href)
+            link.click()
+        }).catch(error => console.error("Error generating the image:", error));
+    }
     </script>
 </body>
 </html>
