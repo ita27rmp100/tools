@@ -41,10 +41,40 @@ cd tools/[tool_name]
 Follow the specific installation instructions provided in each tool's directory.
 
 ## Usage
-Refer to the respective `README.md` files in each tool's directory for comprehensive instructions and examples.
+
+1. **GitHubRG**  
+   ```bash
+   python GitHubRG.py
+   ```
+
+2. **MyIP_addr**  
+   ```bash
+   python MyIP_addr.py
+   ```
+
+3. **csv_tableToHtml**  
+   ```bash
+   python csv_tableToHtml.py
+   ```
+
+4. **git_push**  
+   ```bash
+   bash git_push.sh
+   ```
+
+5. **itaCrypt**  
+   ```bash
+   python itaCrypt.py
+   ```
+
+6. **shortlnk**  
+   ```bash
+   python shortlnk.py
+   ```
 
 ## Contributing
 Contributions are welcome! If you have suggestions for new tools or improvements to existing ones, please fork the repository and submit a pull request.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
