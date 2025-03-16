@@ -7,23 +7,27 @@ This repository contains a collection of utilities designed to streamline variou
 
 ## Tools Included
 
-1. **GitHubRG**  
+1. **GitHubRG (Python)**  
    Automates GitHub repository generation via API calls. Allows users to create repositories directly from the terminal without needing to open a browser.
 
-2. **MyIP_addr**  
+2. **MyIP_addr (Python)**  
    Retrieves the user's public IP address and displays it. Useful for quick network diagnostics or tracking your external IP.
 
-3. **csv_tableToHtml**  
+3. **csv_tableToHtml (Python)**  
    Converts CSV files into HTML tables for easy integration into web applications. Handles large datasets with proper formatting.
 
-4. **git_push**  
-   Simplifies git operations by automating the process of adding, committing, and pushing changes to a remote repository.
+4. **git_push (Python)**  
+   Simplifies git operations by automating the process of adding, committing, and pushing changes to a remote repository (1 in 3), or used to inflate your GitHub contributions.
 
-5. **itaCrypt**  
+5. **itaCrypt (Python)**  
    Provides encryption and decryption functionalities using basic cryptographic techniques. Ideal for securing small files or messages.
 
-6. **shortlnk**  
+6. **shortlnk (NodeJS)**  
    Generates short URLs from longer URLs using URL shortening services. Facilitates easier sharing and URL management.
+## Programming Skills used here 
+```bash
+Python | Javascript | HTML5 | CSS3 | Bootstrap | jQuery | MySQL | NodeJS | C
+```
 
 ## Installation
 To use any of these tools, clone the repository:
@@ -42,39 +46,47 @@ Follow the specific installation instructions provided in each tool's directory.
 
 ## Usage
 
-1. **GitHubRG**  
+1. **GitHubRG (HTML&JavaScript)**  
    ```bash
-   python GitHubRG.py
+   start index.html
    ```
 
-2. **MyIP_addr**  
+2. **MyIP_addr (NodeJS)**  
    ```bash
-   python MyIP_addr.py
+   npm start #Notice that this tool is not completed
    ```
 
-3. **csv_tableToHtml**  
+3. **csv_tableToHtml (Python)**  
    ```bash
-   python csv_tableToHtml.py
+   python app.py
    ```
 
-4. **git_push**  
+4. **git_push (python)**
    ```bash
-   bash git_push.sh
+   python inflate.py //To inflate your github contributions
    ```
 
-5. **itaCrypt**  
    ```bash
-   python itaCrypt.py
+   python push.py //To make push operation more eeasier
+
+5. **itaCrypt (Python/C)**  
+   ```bash
+   python app.py  # For Python version
    ```
 
-6. **shortlnk**  
    ```bash
-   python shortlnk.py
+   gcc main.c -o main ; ./main # For C version (Not Completed)
    ```
+
+6. **shortlnk (Python)**  
+   ```bash
+   npm start
+   ```
+
+## Skills Used
+- **API Handling**: GitHub API for repository management.
+- **File Handling & Conversion**: Transforming CSV data into HTML tables.
+- **URL Shortening & Encryption**: Generating short URLs and providing cryptographic functionalities.
 
 ## Contributing
 Contributions are welcome! If you have suggestions for new tools or improvements to existing ones, please fork the repository and submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
