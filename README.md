@@ -63,11 +63,11 @@ Follow the specific installation instructions provided in each tool's directory.
 
 4. **git_push (python)**
    ```bash
-   python inflate.py //To inflate your github contributions
+   python inflate.py # To inflate your github contributions
    ```
 
    ```bash
-   python push.py //To make push operation more eeasier
+   python push.py # To make push operation more eeasier
 
 5. **itaCrypt (Python/C)**  
    ```bash
@@ -78,7 +78,7 @@ Follow the specific installation instructions provided in each tool's directory.
    gcc main.c -o main ; ./main # For C version (Not Completed)
    ```
 
-6. **shortlnk (Python)**  
+6. **shortlnk (NodeJS)**  
    ```bash
    npm start
    ```
@@ -90,3 +90,6 @@ Follow the specific installation instructions provided in each tool's directory.
 
 ## Contributing
 Contributions are welcome! If you have suggestions for new tools or improvements to existing ones, please fork the repository and submit a pull request.
+
+<h3 align="left">SUPPORT ME :</h3>
+<p><a href="https://ko-fi.com/ita27rmp100"> <img align="left" src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="ita27rmp100" /></a></p><br><br>
