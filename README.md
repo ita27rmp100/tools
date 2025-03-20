@@ -53,7 +53,7 @@ Follow the specific installation instructions provided in each tool's directory.
 
 2. **MyIP_addr (NodeJS)**  
    ```bash
-   npm start #Notice that this tool is not completed
+   node script.js
    ```
 
 3. **csv_tableToHtml (Python)**  
