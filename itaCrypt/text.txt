@@ -1,2 +1,2 @@
-(hello, mates)
-good
+(hello everyone)
+good morning
