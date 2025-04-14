@@ -1,0 +1,72 @@
+/* general settings */
+body {
+    background:linear-gradient(280deg, #3397d4, #18577d);
+    display:flex;
+    justify-content:center
+}
+*{
+    font-family: cursive;
+    position: relative;
+    transition: all 0.2s;
+}
+/* principle card */
+nav {
+    width:300px;
+    height:200px; /*425 px*/
+    background:white;
+    position:relative;
+    top:20px;
+    border-radius:18px;
+    box-shadow:1px 1px 15px -2px grey;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+    align-items: center;
+    overflow-y:hidden;
+}
+/* header */
+header{
+    align-self:center;
+}
+p{
+    font-size:12px;
+}
+/* inputs styles */
+.inputing{
+    width: 95%;
+    align-self: center;
+    border: 0px;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    font-size: 20px;
+    outline: 0px;
+}
+.submit{
+    width: fit-content;
+    align-self: center;
+    top: 8px;
+    background: #2e83b7;
+    color: white;
+    border: 0px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.submit:hover{
+    top:-0.05px;
+    box-shadow: 0px 0px 10px 0px grey;
+}
+.submit:active{
+    top:1px;
+    opacity:0.8;
+}
+/* QR code */
+.QR_code {
+    width: 200px;
+    border: 1px solid grey;
+    padding: 5px;
+    align-self: center;
+    top: 10px;
+}
+img{
+    width: 200px;
+}
