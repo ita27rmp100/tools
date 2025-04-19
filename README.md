@@ -24,6 +24,10 @@ This repository contains a collection of utilities designed to streamline variou
 
 6. **shortlnk (NodeJS)**  
    Generates short URLs from longer URLs using URL shortening services. Facilitates easier sharing and URL management.
+
+7. **cl-with-cmnts (Python)**  
+   Command line with comments — a simple script that allows you to add comments to the commands you execute in your command line. Available for both Windows and Linux.
+   
 ## Programming Skills used here 
 ```bash
 Python | Javascript | HTML5 | CSS3 | Bootstrap | jQuery | MySQL | NodeJS | C
@@ -81,6 +85,11 @@ Follow the specific installation instructions provided in each tool's directory.
 6. **shortlnk (NodeJS)**  
    ```bash
    npm start
+   ```
+
+7. **cl-with-cmnts (Python)**  
+   ```bash
+   python app.py
    ```
 
 ## Skills Used
