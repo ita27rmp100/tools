@@ -7,9 +7,11 @@ with open(fileName,'r') as file :
                     content = file.read()
                     bc = '.'
                     for i in content :
-                        if ord(i) in list(range(65,90)) + list(range(97,122)) + list(range(48,75)) :
+                        if ord(i) in list(range(65,90)) + list(range(97,122)) + list(range(48,75)) and i!="n" :
                             BinChar =  decimal_to_binary(ord(i))
                             bc += letters[int(BinChar[0:3],2)] + letters[int(BinChar[3:],2)] + '.'
+                        elif i == "n" :
+                              bc += i + '.'
                         else :
                             bc += i + '.'
                     newFileName = fileName[:fileName.index('.')] + 'Encrypted' + fileName[fileName.index('.'):]
