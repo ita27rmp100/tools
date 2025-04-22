@@ -7,12 +7,14 @@ try:
     OriginContent = ''
     i = 0
     while i < len(content):
-        if i + 2 < len(content) and content[i] in letters and content[i+1] in letters and content[i+2] == '.':
+        if i + 2 < len(content) and (content[i] in letters) and (content[i+1] in letters) and (content[i+2] == '.') and (content[i:i+1]!="||"):
             left_bin = bin(letters.index(content[i]))[2:].zfill(3)
             right_bin = bin(letters.index(content[i+1]))[2:].zfill(4)
             ascii_binary = left_bin + right_bin
             OriginContent += chr(int(ascii_binary, 2))
             i += 3  # Skip the two-letter token and the dot.
+        elif content[i:i+1] == "||" :
+             OriginContent += "n"
         else:
             OriginContent += content[i].replace('.','',1)
             i += 1
