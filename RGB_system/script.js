@@ -7,8 +7,7 @@ let colors = {
 // degree of color 
 function GetValue(id) {
     setInterval(() => {
-        colors[id] = document.getElementById('r'+id).value
-        document.getElementById(id).innerHTML = colors[id];
+        colors[id] = $(`#r${id}`).val()
     },1);
 }
 GetValue('red')
@@ -17,6 +16,7 @@ GetValue('blue')
 // display the color
 setInterval(() => {
     let color = 'rgb('+colors.red+','+colors.green+','+colors.blue+')'
+    console.log(color)
     document.getElementById('crgb').innerHTML = color;
     document.getElementById('crgb').style = 'background-color:'+color
 },1);
