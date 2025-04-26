@@ -4,14 +4,6 @@ let colors = {
     'green':0,
     'blue':0
 }
-// choose color
-class Color extends HTMLElement{
-    connectedCallback(){
-        let color = this.getAttribute('color')
-        this.innerHTML = "<label class='label'>"+color+'</label><label '+'id='+color+'></label>' 
-    }
-}
-customElements.define("chose-color",Color)
 // degree of color 
 function GetValue(id) {
     setInterval(() => {

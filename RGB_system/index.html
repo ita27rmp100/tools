@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>colors (rgb) </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div class="chose">
         <h2 id="crgb">rgb(red,green,blue)</h2>
         <!--red-->
-        <chose-color color='red'></chose-color>
         <input type="range"max='255'id="rred">
         <!--green-->
-        <chose-color color='green'></chose-color>
         <input type="range"max='255'id="rgreen">
         <!--blue-->
-        <chose-color color='blue'></chose-color>
         <input type="range"max='255' id="rblue">
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
