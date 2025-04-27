@@ -1,22 +1,15 @@
-//data
-let colors = {
-    'red':0,
-    'green':0,
-    'blue':0
+function getColor(){
+    let color = `rgb(${$(`#red`).val()},${$(`#green`).val()},${$(`#blue`).val()})`
+    $("#rgb").css("background-color",color)
+    $("#rgb").text(color)
 }
-// degree of color 
-function GetValue(id) {
-    setInterval(() => {
-        colors[id] = $(`#r${id}`).val()
-    },1);
+let colors = ['red','green','blue']
+for (let i = 0; i < colors.length; i++) {
+    $(`#${colors[i]}`).css('background',`linear-gradient(-45deg,${colors[i]},transparent)`)
 }
-GetValue('red')
-GetValue('green')
-GetValue('blue')
-// display the color
-setInterval(() => {
-    let color = 'rgb('+colors.red+','+colors.green+','+colors.blue+')'
-    console.log(color)
-    document.getElementById('crgb').innerHTML = color;
-    document.getElementById('crgb').style = 'background-color:'+color
-},1);
+getColor()
+$(".resize").on(
+    'input',function(){
+          getColor()
+    }
+)
