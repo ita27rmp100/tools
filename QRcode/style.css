@@ -52,11 +52,9 @@ p{
     border-radius: 5px;
 }
 .submit:hover{
-    top:-0.05px;
     box-shadow: 0px 0px 10px 0px grey;
 }
 .submit:active{
-    top:1px;
     opacity:0.8;
 }
 /* QR code */
@@ -66,7 +64,4 @@ p{
     padding: 5px;
     align-self: center;
     top: 10px;
-}
-img{
-    width: 200px;
 }
