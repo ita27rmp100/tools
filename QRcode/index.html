@@ -1,24 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>QR code generator</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR code generator</title>
+
+  <!-- Bootstrap 4 CDN -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-MlL+9oAI7E/pkFIypi2C+bdlZc3TxjrpA7cu+nU7+uUHG+6+N3UMVqEwV1pb3GMF"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    body {
+      background: linear-gradient(280deg, #3397d4, #18577d);
+      display: flex;
+      justify-content: center;
+      font-family: cursive;
+    }
+
+    #nav {
+      width: 300px;
+      height: 175px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 1px 1px 15px -2px grey;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      overflow-y: hidden;
+      padding: 1rem;
+    }
+
+    header p {
+      font-size: 12px;
+    }
+
+    .inputing {
+      width: 95%;
+      border: none;
+      border-bottom: 1px solid grey;
+      text-align: center;
+      font-size: 20px;
+      outline: none;
+    }
+
+    .submit {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .submit:hover {
+      box-shadow: 0px 0px 10px 0px grey;
+    }
+
+    .submit:active {
+      opacity: 0.8;
+    }
+
+    .QR_code {
+      width: 200px;
+      border: 1px solid grey;
+      padding: 5px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <nav id="nav">
-        <header>
-            <h2>QR code Generator</h2>
-            <p>Please , write a url or text to add QR code .</p>
-        </header>
-            <input type="url" name="url" id="site" placeholder="Enter your URL here" class="inputing">
-            <input type="button" value="Create QR code" class="submit" onclick="generatoring()">
-        <div class="QR_code">
-            <img width="200px" src="" id="QR">
-        </div>
-    </nav>
+  <nav id="nav">
+    <header class="text-center">
+      <h2 class="h5">QR code Generator</h2>
+      <p>Please, write a URL or text to add QR code.</p>
+    </header>
+
+    <input
+      type="url"
+      name="url"
+      id="site"
+      placeholder="Enter your URL here"
+      class="inputing"
+    />
+    <input
+      type="button"
+      value="Create QR code"
+      class="submit btn btn-info"
+      onclick="generatoring()"
+    />
+
+    <div class="QR_code">
+      <img width="200px" src="" id="QR" />
+    </div>
+  </nav>
+
+  <script src="script.js"></script>
 </body>
 </html>
