@@ -22,7 +22,7 @@ function fetchRepoDetails(){
         });
         $("#fork").text(data.forks_count);
         $("#star").text(data.stargazers_count);
-        $("#issue").text(data.open_issues_count);
+        $("#issue").text(data.open_issues_count-1);
         $("#cntrb").text(data.network_count)
         $("#desc").text(data.description.slice(0,100)+"...")
         $("#preview").fadeIn()
@@ -38,7 +38,7 @@ function downloadPreview() {
         proxy: "https://cors-anywhere.herokuapp.com/"
     }).then(canvas => {
         const link = document.createElement("a");
-        link.download = `${repoName}_preview.png`;
+        link.download = `${repoName}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
     }).catch(error => console.error("Error generating the image:", error));
